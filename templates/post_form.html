@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Form</title>
+</head>
+<body>
+    <h1>POST Form</h1>
+    <form id="postForm">
+        <label for="input_data">Enter a number:</label>
+        <input type="number" name="input_data" id="input_data" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#postForm').on('submit', function(e) {
+            e.preventDefault();
+            const formData = $(this).serialize();
+            $.post('/post-form', formData, function(response) {
+                $('#result').text(response.message);
+            });
+        });
+    </script>
+</body>
+</html>
